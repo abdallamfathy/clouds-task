@@ -1,6 +1,6 @@
 import React from "react";
-import logo from "../../assets/images/logo.png";
-import avatar from "../../assets/images/avatar.png"
+import logo from "../../../assets/images/logo.png";
+import avatar from "../../../assets/images/avatar.png"
 import { FiSearch } from "react-icons/fi";
 import { NavLinks } from "./NavLinks";
 
