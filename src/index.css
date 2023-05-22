@@ -6,3 +6,21 @@
 *{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+/* Target the search input */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  display: none;
+}
+
+/* Add custom styles */
+input[type="search"]::before {
+  content: ' ';
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url('/src/assets/images/logo.png') no-repeat center center;
+  /* Add other styles as needed */
+}
