@@ -5,12 +5,12 @@ import RecipeCard from "../RecipeCard";
 
 const SearchBar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("chicken");
-  const [show, setShow] = useState(true);
+  const [myData, setMyData] = useState([]);
+  const [error, setError] = useState(null);
+  const [count, setCount] = useState(12);
   const apiUrl = import.meta.env.VITE_APP_API_BASE_URL;
   const apiId = import.meta.env.VITE_APP_API_ID;
   const apiKey = import.meta.env.VITE_APP_API_KEY;
-  const [myData, setMyData] = useState([]);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     // eslint-disable-next-line prefer-const
@@ -20,7 +20,7 @@ const SearchBar: React.FC = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `${apiUrl}/search?q=${searchTerm}?more&app_id=${apiId}&app_key=${apiKey}`,
+          `${apiUrl}/search?q=${searchTerm}&to=${count}&app_id=${apiId}&app_key=${apiKey}`,
           { signal: abortController.signal } // signal fetch to abort if needed
         );
 
@@ -32,6 +32,7 @@ const SearchBar: React.FC = () => {
 
         // save fetched data in array myData
         setMyData(data.hits);
+        console.log(data);
         
       } catch (error: any) {
         if (error.name === "AbortError") {
@@ -49,12 +50,12 @@ const SearchBar: React.FC = () => {
     return () => {
       abortController.abort();
     };
-  }, [searchTerm, apiUrl, apiId, apiKey]);
+  }, [searchTerm, apiUrl, apiId, apiKey, count]);
 
-  useEffect(() => {
-    console.log(myData);
-  }, [myData]);
-
+  // increase count of fetching data
+  const increaseCount = () => {
+    setCount(count + 12);
+  };
 
   // get the value of input when change
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -69,7 +70,6 @@ const SearchBar: React.FC = () => {
           placeholder="What are you looking for ?"
           value={searchTerm}
           onChange={handleChange}
-          onMouseEnter={() => setShow(!show)}
           className="bg-white text-black  pl-2 py-2 w-full mx-1 text-left  focus:outline-none "
         />
         {searchTerm && <GrClose onClick={() => setSearchTerm("")} />}
@@ -77,6 +77,11 @@ const SearchBar: React.FC = () => {
       <div>
         <RecipeCard searchTerm={searchTerm} data={myData} />
       </div>
+      {
+        myData.length > 0 &&  <div className="flex justify-center lg:mt-20 mt-10 ">
+        <button className="border-2 border-black/60 px-12 rounded-md p-2 font-semibold" onClick={() => increaseCount()}>Load More</button>
+      </div>
+      }
     </div>
   );
 };
