@@ -6,6 +6,7 @@ import RecipeCard from "../RecipeCard";
 const SearchBar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("chicken");
   const [myData, setMyData] = useState([]);
+  const [recipeCount, setRecipeCount] = useState();
   const [error, setError] = useState(null);
   const [count, setCount] = useState(12);
   const apiUrl = import.meta.env.VITE_APP_API_BASE_URL;
@@ -32,6 +33,7 @@ const SearchBar: React.FC = () => {
 
         // save fetched data in array myData
         setMyData(data.hits);
+        setRecipeCount(data.count);
         console.log(data);
         
       } catch (error: any) {
@@ -72,14 +74,17 @@ const SearchBar: React.FC = () => {
           onChange={handleChange}
           className="bg-white text-black  pl-2 py-2 w-full mx-1 text-left  focus:outline-none "
         />
+        <div className="flex items-center ">
+          <p className="w-32">({myData?.length} Recipes)</p>
         {searchTerm && <GrClose onClick={() => setSearchTerm("")} />}
+        </div>
       </div>
       <div>
         <RecipeCard searchTerm={searchTerm} data={myData} />
       </div>
       {
         myData.length > 0 &&  <div className="flex justify-center lg:mt-20 mt-10 ">
-        <button className="border-2 border-black/60 px-12 rounded-md p-2 font-semibold" onClick={() => increaseCount()}>Load More</button>
+        <button className="border-2 border-black/60 px-12 rounded-md p-2 font-[500]" onClick={() => increaseCount()}>Load More</button>
       </div>
       }
     </div>

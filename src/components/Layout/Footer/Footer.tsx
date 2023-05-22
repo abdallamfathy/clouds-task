@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
                 </div>
                 <div className='w-1/2 flex justify-end 2xl:gap-40 xl:gap-36 lg:gap-28 md:gap-20 self-end text-sm'>
                     <div className=' flex flex-col  gap-2'>
-                        <h2 className='font-semibold mb-4'>Tastebite</h2>
+                        <h2 className='font-[500] mb-4'>Tastebite</h2>
                         <p className='hover:underline cursor-pointer hover:underline-offset-4 text-gray-400 text-sm'>About Us</p>
                         <p className='hover:underline cursor-pointer hover:underline-offset-4 text-gray-400 text-sm'>Careers</p>
                         <p className='hover:underline cursor-pointer hover:underline-offset-4 text-gray-400 text-sm'>Contact Us</p>
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
  
                     </div> 
                     <div className=' flex flex-col  gap-2'>
-                        <h2 className='font-semibold mb-4'>Legal</h2>
+                        <h2 className='font-[500] mb-4'>Legal</h2>
                         <p className='hover:underline cursor-pointer hover:underline-offset-4 text-gray-400 text-sm'>Terms</p>
                         <p className='hover:underline cursor-pointer hover:underline-offset-4 text-gray-400 text-sm'>Conditions</p>
                         <p className='hover:underline cursor-pointer hover:underline-offset-4 text-gray-400 text-sm'>Cookies</p>
@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
  
                     </div> 
                     <div className='    flex flex-col  gap-2'> 
-                        <h2 className='font-semibold mb-4'>Follow</h2> 
+                        <h2 className='font-[500] mb-4'>Follow</h2> 
                         <p className='hover:underline cursor-pointer hover:underline-offset-4 text-gray-400 text-sm'>Facebook</p>
                         <p className='hover:underline cursor-pointer hover:underline-offset-4 text-gray-400 text-sm'>Twitter</p>
                         <p className='hover:underline cursor-pointer hover:underline-offset-4 text-gray-400 text-sm'>Instagram</p>
