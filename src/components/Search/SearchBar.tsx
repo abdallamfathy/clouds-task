@@ -84,7 +84,7 @@ const SearchBar: React.FC = () => {
       </div>
       {
         myData.length > 0 &&  <div className="flex justify-center lg:mt-20 mt-10 ">
-        <button className="border-2 border-black/60 px-12 rounded-md p-2 font-semibold" onClick={() => increaseCount()}>Load More</button>
+        <button className="border-2 border-black/60 px-12 rounded-md p-2 font-[500]" onClick={() => increaseCount()}>Load More</button>
       </div>
       }
     </div>
