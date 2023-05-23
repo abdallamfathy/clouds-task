@@ -14,7 +14,6 @@ const SearchBar: React.FC = () => {
   const apiKey = import.meta.env.VITE_APP_API_KEY;
 
   useEffect(() => {
-    // eslint-disable-next-line prefer-const
     let abortController = new AbortController();
 
     // fetching data
