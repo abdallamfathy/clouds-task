@@ -9,7 +9,7 @@ import {IoCloseSharp} from "react-icons/all"
 
 
 const Navbar: React.FC = () => {
-  const [show , setShow] = useState(true);
+  const [show , setShow] = useState(false);
 
   return (
     <>

@@ -40,6 +40,18 @@ export const NavLinks = ({
       ))}
     </div>
     }
+    {
+      <div className="md:flex hidden flex-row  items-center xl:gap-14 lg:gap-10 gap-5 ">
+      {NavItems.map((link, index) => (
+        <div
+        key={index}
+        className="flex gap-[1px] items-center hover:text-gray-400">
+          <a className="max-md:w-28" href={link.link}>{link.title}</a>
+          {index !== 3 && <BiChevronDown className="hidden md:block"/>}
+        </div>
+      ))}
+    </div>
+    }
     </>
   );
 };
