@@ -5,6 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 *{
   font-family: 'Roboto', sans-serif;
+  scroll-behavior: smooth;
 }
 
 .search {

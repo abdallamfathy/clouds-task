@@ -6,8 +6,9 @@ import RecipeCard from "../RecipeCard";
 const SearchBar: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [myData, setMyData] = useState([]);
+  const [recipeCount, setRecipeCount] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [count, setCount] = useState(12);
+  const [count, setCount] = useState(48);
   const apiUrl = import.meta.env.VITE_APP_API_BASE_URL;
   const apiId = import.meta.env.VITE_APP_API_ID;
   const apiKey = import.meta.env.VITE_APP_API_KEY;
@@ -32,12 +33,13 @@ const SearchBar: React.FC = () => {
 
         // save fetched data in array myData
         setMyData(data.hits);
+        setRecipeCount(data.count);
         setLoading(false);
       } catch (error: any) {
         if (error.name === "AbortError") {
-          console.log("Fetch aborted");
+          // console.log("Fetch aborted");
         } else {
-          console.error("Error:", error);
+          // console.error("Error:", error);
         }
       }
     };
@@ -52,14 +54,13 @@ const SearchBar: React.FC = () => {
 
   // increase count of fetching data
   const increaseCount = () => {
-    setCount(count + 12);
+    setCount(count + 24);
   };
 
   // get the value of input when change
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
-
   return (
     <div className="flex flex-col 2xl:gap-20 xl:gap-16 gap-10  ">
       <div className="bg-white  w-full  h-12 flex justify-between items-center border-b-2 border-black/50 ">
@@ -73,19 +74,19 @@ const SearchBar: React.FC = () => {
 
         {searchTerm &&
         <div className="flex items-center ">
-          <p className="md:w-32 w-28">({myData?.length} Recipes)</p>
+          <p className="md:w-32 w-28">({recipeCount} Recipes)</p>
         
         <GrClose onClick={() => setSearchTerm("")} />
         </div>
         }
       </div>
-      <div>
+      <div id="target-element">
         <RecipeCard searchTerm={searchTerm} data={myData} loading={loading} />
         {/* <RecipeCardSkeleton/> */}
       </div>
       {
         searchTerm &&  <div className="flex justify-center lg:mt-20 mt-10 ">
-        <button className="border-2 border-black/60 px-12 rounded-md p-2 font-[500] hover:bg-black hover:text-white transition duration-300 ease-in" onClick={() => increaseCount()}>Load More</button>
+        <button  className="border-2 border-black/60 px-12 rounded-md p-2 font-[500] hover:bg-black hover:text-white transition duration-300 ease-in" onClick={(e) => { e.preventDefault(), increaseCount()}}>Load More</button>
       </div>
       }
     </div>
