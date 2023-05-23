@@ -65,25 +65,29 @@ const SearchBar: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col 2xl:gap-20 xl:gap-16 md:gap-10 ">
+    <div className="flex flex-col 2xl:gap-20 xl:gap-16 gap-10  ">
       <div className="bg-white  w-full  h-12 flex justify-between items-center border-b-2 border-black/50 ">
         <input
           type="search"
           placeholder="What are you looking for ?"
           value={searchTerm}
           onChange={handleChange}
-          className="bg-white text-black  pl-2 py-2 w-full mx-1 text-left  focus:outline-none "
+          className="bg-white text-black  pl-1 py-2 w-full mx-1 text-left  focus:outline-none "
         />
+
+        {searchTerm &&
         <div className="flex items-center ">
-          <p className="w-32">({myData?.length} Recipes)</p>
-        {searchTerm && <GrClose onClick={() => setSearchTerm("")} />}
+          <p className="md:w-32 w-28">({myData?.length} Recipes)</p>
+        
+        <GrClose onClick={() => setSearchTerm("")} />
         </div>
+        }
       </div>
       <div>
         <RecipeCard searchTerm={searchTerm} data={myData} />
       </div>
       {
-        myData.length > 0 &&  <div className="flex justify-center lg:mt-20 mt-10 ">
+        searchTerm &&  <div className="flex justify-center lg:mt-20 mt-10 ">
         <button className="border-2 border-black/60 px-12 rounded-md p-2 font-[500]" onClick={() => increaseCount()}>Load More</button>
       </div>
       }
