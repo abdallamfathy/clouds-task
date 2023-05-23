@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { GrClose } from "react-icons/gr";
 import RecipeCard from "../RecipeCard";
-import RecipeCardSkeleton from "../RecipeCardSkeleton";
 
 
 const SearchBar: React.FC = () => {
