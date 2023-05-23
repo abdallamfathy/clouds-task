@@ -66,10 +66,10 @@ const Footer: React.FC = () => {
       <div className="flex md:flex-row flex-col-reverse max-md:gap-5 justify-between items-center text-gray-400 pt-10 pb-5">
         <p className="text-sm">© 2020 Tastebite - All rights reserved</p>
         <div className="flex gap-10 items-center text-2xl text-gray-500">
-          <FiFacebook />
-          <FiTwitter />
-          <FiInstagram />
-          <FiYoutube />
+          <FiFacebook className="hover:text-gray-400 cursor-pointer" />
+          <FiTwitter  className="hover:text-gray-400 cursor-pointer"/>
+          <FiInstagram  className="hover:text-gray-400 cursor-pointer"/>
+          <FiYoutube  className="hover:text-gray-400 cursor-pointer"/>
         </div>
       </div>
     </div>

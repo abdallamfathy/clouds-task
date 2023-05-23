@@ -4,10 +4,9 @@ import RecipeCard from "../RecipeCard";
 
 
 const SearchBar: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("chicken");
+  const [searchTerm, setSearchTerm] = useState("");
   const [myData, setMyData] = useState([]);
-  const [recipeCount, setRecipeCount] = useState();
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [count, setCount] = useState(12);
   const apiUrl = import.meta.env.VITE_APP_API_BASE_URL;
   const apiId = import.meta.env.VITE_APP_API_ID;
@@ -18,6 +17,7 @@ const SearchBar: React.FC = () => {
 
     // fetching data
     const fetchData = async () => {
+      setLoading(true);
       try {
         const response = await fetch(
           `${apiUrl}/search?q=${searchTerm}&to=${count}&app_id=${apiId}&app_key=${apiKey}`,
@@ -32,15 +32,12 @@ const SearchBar: React.FC = () => {
 
         // save fetched data in array myData
         setMyData(data.hits);
-        setRecipeCount(data.count);
-        console.log(data);
-        
+        setLoading(false);
       } catch (error: any) {
         if (error.name === "AbortError") {
           console.log("Fetch aborted");
         } else {
           console.error("Error:", error);
-          setError(error.message);
         }
       }
     };
@@ -83,11 +80,12 @@ const SearchBar: React.FC = () => {
         }
       </div>
       <div>
-        <RecipeCard searchTerm={searchTerm} data={myData} />
+        <RecipeCard searchTerm={searchTerm} data={myData} loading={loading} />
+        {/* <RecipeCardSkeleton/> */}
       </div>
       {
         searchTerm &&  <div className="flex justify-center lg:mt-20 mt-10 ">
-        <button className="border-2 border-black/60 px-12 rounded-md p-2 font-[500]" onClick={() => increaseCount()}>Load More</button>
+        <button className="border-2 border-black/60 px-12 rounded-md p-2 font-[500] hover:bg-black hover:text-white transition duration-300 ease-in" onClick={() => increaseCount()}>Load More</button>
       </div>
       }
     </div>
